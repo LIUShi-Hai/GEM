@@ -64,12 +64,7 @@ conda install -c shihai_liu -c conda-forge -c bioconda gem=1.1.0
 Run the full GEM pipeline:
 
 ```bash
-gem run-all \
-  --target target.fasta \
-  --known known.fasta \
-  --novel novel.fasta \
-  --email you@example.com \
-  --threads 4
+gem run-all --target target.fasta --known known.fasta --novel novel.fasta --email you@example.com --threads 4
 ```
 
 View all available parameters:
