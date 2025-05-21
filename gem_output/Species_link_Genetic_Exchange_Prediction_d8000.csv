@@ -1,3 +1,0 @@
-pair_num,qseqid,qstart,qend,sseqid,sstart,send,pident,length,evalue,novel host,known host
-1,NZ_BMDB01000001.1,438571,443588,NZ_CP041776.1_merged_d8000,10000,4982,99.781,5019,0.0,Phocicoccus schoeneichii,Enterococcus faecalis
-1,NZ_BMDB01000001.1,442814,444650,NZ_CP041776.1_merged_d8000,10000,8164,99.619,1837,0.0,Phocicoccus schoeneichii,Enterococcus faecalis

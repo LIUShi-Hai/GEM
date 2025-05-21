@@ -1,5 +1,0 @@
-pair_num,qseqid,qstart,qend,sseqid,sstart,send,pident,length,evalue,novel host,known host
-1,NZ_NRPJ01000016.1,11406,16253,NZ_CP041776.1_merged_d0,1,4849,97.030,4849,0.0,Carnobacterium divergens,Enterococcus faecalis
-1,NZ_NRPJ01000016.1,15648,16253,NZ_CP041776.1_merged_d0,1,606,94.389,606,0.0,Carnobacterium divergens,Enterococcus faecalis
-2,NZ_BMDB01000001.1,437943,440910,NZ_RXOX01000014.1:33086-45053_merged_d0,8612,5645,99.293,2969,0.0,Phocicoccus schoeneichii,Enterococcus faecium
-2,NZ_BMDB01000001.1,440906,443247,NZ_RXOX01000014.1:33086-45053_merged_d0,2342,1,100.000,2342,0.0,Phocicoccus schoeneichii,Enterococcus faecium
