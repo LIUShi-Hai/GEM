@@ -1,0 +1,22 @@
+[project]
+name = "gem"
+version = "1.1.0"
+description = "GEM: Genetic Exchange Model"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "Shihai Liu", email = "1330797686@qq.com" }
+]
+dependencies = [
+    "biopython"
+]
+
+[project.scripts]
+gem = "gem.cli:main"
+
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["gem"]

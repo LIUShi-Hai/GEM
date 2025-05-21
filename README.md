@@ -1,0 +1,92 @@
+# GEM
+
+**Version 1.1.0**
+
+**Genetic Exchange Model (GEM)** is a cross-platform bioinformatics pipeline to analyze genetic exchange between known and potential hosts based on comparative genomics.  
+
+![Conda](https://img.shields.io/conda/vn/shihai_liu/gem?label=Install%20with%20conda)
+
+## ✨ Features
+
+- Filters sequences by length
+- Performs multi-threaded BLAST searches against target genes via `--threads`
+- Expands gene contexts
+- Links novel hosts to known hosts via genetic exchange evidence
+
+## 📦 Installation
+
+### 🐧🍎 Option 1: Install with Conda (Recommended for Linux/macOS)
+Installs all dependencies including Biopython and BLAST+.
+
+```bash
+conda install -c shihai_liu -c conda-forge -c bioconda gem=1.1.0
+```
+
+### 🪟 Option 2: Windows Users
+
+**✅ (A) Using WSL (Recommended)**
+
+1. Install WSL (Windows Subsystem for Linux):
+   ```powershell
+   wsl --install
+   ```
+2. Launch Ubuntu (or another Linux distro) and install GEM:
+   ```bash
+   conda install -c shihai_liu -c conda-forge -c bioconda gem=1.1.0
+   ```
+
+**✅ (B) Native Windows with pip (Advanced)**
+
+1. Ensure system requirements:
+   - Python ≥ 3.10
+   - Biopython
+   - NCBI BLAST+ (`makeblastdb`, `blastn`) in PATH
+
+2. Install GEM via pip:
+   ```bash
+   pip install git+https://github.com/LIUShi-Hai/GEM.git@v1.1.0
+   ```
+
+## 🚀 Usage
+
+Run the full pipeline with custom thread settings:
+
+```bash
+gem run-all \
+  --target target.fasta \
+  --known known.fasta \
+  --novel novel.fasta \
+  --email you@example.com \
+  --threads 4
+```
+
+To view all options:
+
+```bash
+gem run-all --help
+```
+
+**Key options:**
+- `--threads`: Number of CPU threads for BLAST (default: 1)
+- `--target`: Reference DNA sequence of the target gene
+- `--known`: DNA sequences containing the target gene
+- `--novel`: DNA sequences of potential hosts for the target gene
+
+## 🧪 Test Example Data
+
+```bash
+gem run-all --target test/target.fasta \
+  --known test/known.fasta \
+  --novel test/novel.fasta \
+  --email you@example.com \
+  --threads 2
+```
+
+**Key outputs:**
+- `Species_link_Genetic_Exchange_Prediction_d{d}.csv`
+
+## 📫 Contact
+
+- 🦸‍♂️ Shihai Liu
+- 📧 1330797686@qq.com
+- 🔗 GitHub: https://github.com/LIUShi-Hai/GEM

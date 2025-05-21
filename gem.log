@@ -1,0 +1,171 @@
+
+
+Building a new DB, current time: 05/21/2025 10:30:17
+New DB name:   /mnt/c/Users/13307/Desktop/GEM_v.1.1.0/gem_output/target_gene_ref_db
+New DB title:  test/target.fasta
+Sequence type: Nucleotide
+Keep MBits: T
+Maximum file size: 3000000000B
+Adding sequences from FASTA; added 1 sequences in 0.00252008 seconds.
+
+
+
+
+Building a new DB, current time: 05/21/2025 10:30:17
+New DB name:   /mnt/c/Users/13307/Desktop/GEM_v.1.1.0/gem_output/blast_results_d0/merged_context_db
+New DB title:  gem_output/Genetic_contexts_merged_d0.fasta
+Sequence type: Nucleotide
+Keep MBits: T
+Maximum file size: 3000000000B
+Adding sequences from FASTA; added 22 sequences in 0.0160079 seconds.
+
+
+
+
+Building a new DB, current time: 05/21/2025 10:30:21
+New DB name:   /mnt/c/Users/13307/Desktop/GEM_v.1.1.0/gem_output/blast_results_d2000/merged_context_db
+New DB title:  gem_output/Genetic_contexts_merged_d2000.fasta
+Sequence type: Nucleotide
+Keep MBits: T
+Maximum file size: 3000000000B
+Adding sequences from FASTA; added 22 sequences in 0.014751 seconds.
+
+
+
+
+Building a new DB, current time: 05/21/2025 10:30:24
+New DB name:   /mnt/c/Users/13307/Desktop/GEM_v.1.1.0/gem_output/blast_results_d4000/merged_context_db
+New DB title:  gem_output/Genetic_contexts_merged_d4000.fasta
+Sequence type: Nucleotide
+Keep MBits: T
+Maximum file size: 3000000000B
+Ignoring sequence 'lcl|10' as it has no sequence data
+Ignoring sequence 'lcl|16' as it has no sequence data
+Adding sequences from FASTA; added 20 sequences in 0.0129499 seconds.
+
+
+
+
+Building a new DB, current time: 05/21/2025 10:30:26
+New DB name:   /mnt/c/Users/13307/Desktop/GEM_v.1.1.0/gem_output/blast_results_d6000/merged_context_db
+New DB title:  gem_output/Genetic_contexts_merged_d6000.fasta
+Sequence type: Nucleotide
+Keep MBits: T
+Maximum file size: 3000000000B
+Ignoring sequence 'lcl|3' as it has no sequence data
+Ignoring sequence 'lcl|4' as it has no sequence data
+Ignoring sequence 'lcl|5' as it has no sequence data
+Ignoring sequence 'lcl|6' as it has no sequence data
+Ignoring sequence 'lcl|7' as it has no sequence data
+Ignoring sequence 'lcl|8' as it has no sequence data
+Ignoring sequence 'lcl|9' as it has no sequence data
+Ignoring sequence 'lcl|10' as it has no sequence data
+Ignoring sequence 'lcl|11' as it has no sequence data
+Ignoring sequence 'lcl|12' as it has no sequence data
+Ignoring sequence 'lcl|13' as it has no sequence data
+Ignoring sequence 'lcl|14' as it has no sequence data
+Ignoring sequence 'lcl|15' as it has no sequence data
+Ignoring sequence 'lcl|16' as it has no sequence data
+Ignoring sequence 'lcl|17' as it has no sequence data
+Ignoring sequence 'lcl|18' as it has no sequence data
+Ignoring sequence 'lcl|19' as it has no sequence data
+Ignoring sequence 'lcl|20' as it has no sequence data
+Ignoring sequence 'lcl|21' as it has no sequence data
+Ignoring sequence 'lcl|22' as it has no sequence data
+Adding sequences from FASTA; added 2 sequences in 0.0172651 seconds.
+
+
+
+
+Building a new DB, current time: 05/21/2025 10:30:32
+New DB name:   /mnt/c/Users/13307/Desktop/GEM_v.1.1.0/gem_output/blast_results_d8000/merged_context_db
+New DB title:  gem_output/Genetic_contexts_merged_d8000.fasta
+Sequence type: Nucleotide
+Keep MBits: T
+Maximum file size: 3000000000B
+Ignoring sequence 'lcl|3' as it has no sequence data
+Ignoring sequence 'lcl|4' as it has no sequence data
+Ignoring sequence 'lcl|5' as it has no sequence data
+Ignoring sequence 'lcl|6' as it has no sequence data
+Ignoring sequence 'lcl|7' as it has no sequence data
+Ignoring sequence 'lcl|8' as it has no sequence data
+Ignoring sequence 'lcl|9' as it has no sequence data
+Ignoring sequence 'lcl|10' as it has no sequence data
+Ignoring sequence 'lcl|11' as it has no sequence data
+Ignoring sequence 'lcl|12' as it has no sequence data
+Ignoring sequence 'lcl|13' as it has no sequence data
+Ignoring sequence 'lcl|14' as it has no sequence data
+Ignoring sequence 'lcl|15' as it has no sequence data
+Ignoring sequence 'lcl|16' as it has no sequence data
+Ignoring sequence 'lcl|17' as it has no sequence data
+Ignoring sequence 'lcl|18' as it has no sequence data
+Ignoring sequence 'lcl|19' as it has no sequence data
+Ignoring sequence 'lcl|20' as it has no sequence data
+Ignoring sequence 'lcl|21' as it has no sequence data
+Ignoring sequence 'lcl|22' as it has no sequence data
+Adding sequences from FASTA; added 2 sequences in 0.0158422 seconds.
+
+
+
+
+Building a new DB, current time: 05/21/2025 10:30:34
+New DB name:   /mnt/c/Users/13307/Desktop/GEM_v.1.1.0/gem_output/blast_results_d10000/merged_context_db
+New DB title:  gem_output/Genetic_contexts_merged_d10000.fasta
+Sequence type: Nucleotide
+Keep MBits: T
+Maximum file size: 3000000000B
+Ignoring sequence 'lcl|3' as it has no sequence data
+Ignoring sequence 'lcl|4' as it has no sequence data
+Ignoring sequence 'lcl|5' as it has no sequence data
+Ignoring sequence 'lcl|6' as it has no sequence data
+Ignoring sequence 'lcl|7' as it has no sequence data
+Ignoring sequence 'lcl|8' as it has no sequence data
+Ignoring sequence 'lcl|9' as it has no sequence data
+Ignoring sequence 'lcl|10' as it has no sequence data
+Ignoring sequence 'lcl|11' as it has no sequence data
+Ignoring sequence 'lcl|12' as it has no sequence data
+Ignoring sequence 'lcl|13' as it has no sequence data
+Ignoring sequence 'lcl|14' as it has no sequence data
+Ignoring sequence 'lcl|15' as it has no sequence data
+Ignoring sequence 'lcl|16' as it has no sequence data
+Ignoring sequence 'lcl|17' as it has no sequence data
+Ignoring sequence 'lcl|18' as it has no sequence data
+Ignoring sequence 'lcl|19' as it has no sequence data
+Ignoring sequence 'lcl|20' as it has no sequence data
+Ignoring sequence 'lcl|21' as it has no sequence data
+Ignoring sequence 'lcl|22' as it has no sequence data
+Adding sequences from FASTA; added 2 sequences in 0.018389 seconds.
+
+
+
+
+Building a new DB, current time: 05/21/2025 10:30:37
+New DB name:   /mnt/c/Users/13307/Desktop/GEM_v.1.1.0/gem_output/blast_results_d12000/merged_context_db
+New DB title:  gem_output/Genetic_contexts_merged_d12000.fasta
+Sequence type: Nucleotide
+Keep MBits: T
+Maximum file size: 3000000000B
+Ignoring sequence 'lcl|3' as it has no sequence data
+Ignoring sequence 'lcl|4' as it has no sequence data
+Ignoring sequence 'lcl|5' as it has no sequence data
+Ignoring sequence 'lcl|6' as it has no sequence data
+Ignoring sequence 'lcl|7' as it has no sequence data
+Ignoring sequence 'lcl|8' as it has no sequence data
+Ignoring sequence 'lcl|9' as it has no sequence data
+Ignoring sequence 'lcl|10' as it has no sequence data
+Ignoring sequence 'lcl|11' as it has no sequence data
+Ignoring sequence 'lcl|12' as it has no sequence data
+Ignoring sequence 'lcl|13' as it has no sequence data
+Ignoring sequence 'lcl|14' as it has no sequence data
+Ignoring sequence 'lcl|15' as it has no sequence data
+Ignoring sequence 'lcl|16' as it has no sequence data
+Ignoring sequence 'lcl|17' as it has no sequence data
+Ignoring sequence 'lcl|18' as it has no sequence data
+Ignoring sequence 'lcl|19' as it has no sequence data
+Ignoring sequence 'lcl|20' as it has no sequence data
+Ignoring sequence 'lcl|21' as it has no sequence data
+Ignoring sequence 'lcl|22' as it has no sequence data
+Adding sequences from FASTA; added 2 sequences in 0.0147991 seconds.
+
+
+Filtered 21 sequences ≥5000 bp into gem_output/known_filtered_5kb.fasta

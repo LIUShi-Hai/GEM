@@ -1,0 +1,39 @@
+package:
+  name: gem
+  version: "1.1.0"
+
+source:
+  path: ..
+
+build:
+  noarch: python
+  script: python -m pip install . --no-deps --ignore-installed
+
+requirements:
+  host:
+    - python >=3.10
+    - pip
+    - setuptools
+    - wheel 
+  run:
+    - python >=3.10
+    - biopython
+    - blast  # Note: Only available on Linux/macOS; users on Windows need to install manually or use WSL
+
+test:
+  commands:
+    - gem --help
+    - gem run-all --help  # verify new threads option appears
+
+about:
+  home: https://github.com/LIUShi-Hai/GEM
+  license: MIT
+  license_file: LICENSE
+  summary: "GEM: Genetic Exchange Model"
+  description: |
+    GEM (Genetic Exchange Model) is a bioinformatics pipeline for identifying horizontal gene transfer events between known and unknown hosts.
+    Version 1.1.0 adds support for multi-threaded BLAST runs via the `--threads` parameter.
+
+extra:
+  recipe-maintainers:
+    - Shihai Liu
