@@ -87,7 +87,10 @@ def extract_segments(fasta_file, d_values, output_dir):
                 up = full[int(row["upstream_start"]):int(row["upstream_end"])]
                 dn = full[int(row["downstream_start"]):int(row["downstream_end"])]
                 merged.append(SeqRecord(up + dn, id=f"{acc}_merged_d{d}", description=""))
-        SeqIO.write(merged, merged_file, "fasta")
+        if merged:
+            SeqIO.write(merged, merged_file, "fasta")
+        else:
+            print(f"[WARNING] No merged sequences written for d={d}; skipping this context.")
 
 def extract_accession(s):
     return s.split(".")[0].split(":")[0]
@@ -109,7 +112,19 @@ def link_and_filter(novel_fasta, d_values, thresholds, output_dir, threads=1):
     for d in d_values:
         context = os.path.join(output_dir, f"Genetic_contexts_merged_d{d}.fasta")
         if not os.path.exists(context):
+            print(f"[INFO] Skipping d={d}: {context} does not exist.")
             continue
+
+        try:
+            records = list(SeqIO.parse(context, "fasta"))
+        except Exception as e:
+            print(f"[ERROR] Could not parse {context}: {e}")
+            continue
+
+        if not records:
+            print(f"[WARNING] No sequences found in {context}; skipping d={d}.")
+            continue
+
         db_dir = os.path.join(output_dir, f"blast_results_d{d}")
         os.makedirs(db_dir, exist_ok=True)
         db = os.path.join(db_dir, "merged_context_db")
@@ -122,6 +137,7 @@ def link_and_filter(novel_fasta, d_values, thresholds, output_dir, threads=1):
             "-num_threads", str(threads),
             "-out", blast_out
         ], check=True)
+
         filtered_out = os.path.join(output_dir, f"Species_link_Genetic_Exchange_Prediction_d{d}.csv")
         top_hits = defaultdict(list)
         with open(blast_out) as f:
@@ -130,6 +146,7 @@ def link_and_filter(novel_fasta, d_values, thresholds, output_dir, threads=1):
                     continue
                 hit = dict(zip(["qseqid", "qstart", "qend", "sseqid", "sstart", "send", "pident", "length", "evalue"], row))
                 top_hits[(hit['qseqid'], hit['sseqid'])].append(hit)
+
         cache, unique = {}, 0
         with open(filtered_out, 'w', newline='') as f:
             writer = csv.DictWriter(f, fieldnames=["pair_num"] + list(hit.keys()) + ["novel host", "known host"])
@@ -151,7 +168,9 @@ def link_and_filter(novel_fasta, d_values, thresholds, output_dir, threads=1):
                     h['novel host'] = q_sp
                     h['known host'] = s_sp
                     writer.writerow(h)
+
         summary.append({"d": d, "unique_query_subject_pairs": unique})
+
     with open(os.path.join(output_dir, "blast_query_subject_pair_counts.csv"), 'w', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=["d", "unique_query_subject_pairs"])
         writer.writeheader()
@@ -200,7 +219,6 @@ def run_all(
 
     extract_segments(filtered, d_values, output_dir)
     link_and_filter(novel, d_values, thresholds, output_dir, threads)
-
 
 def main():
     import argparse
