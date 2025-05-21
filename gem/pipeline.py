@@ -108,7 +108,13 @@ def get_species(acc, cache):
     return species
 
 def link_and_filter(novel_fasta, d_values, thresholds, output_dir, threads=1):
+    from collections import defaultdict
+    import csv
+    import os
+    from Bio import SeqIO, Entrez
+
     summary = []
+
     for d in d_values:
         context = os.path.join(output_dir, f"Genetic_contexts_merged_d{d}.fasta")
         if not os.path.exists(context):
@@ -148,26 +154,49 @@ def link_and_filter(novel_fasta, d_values, thresholds, output_dir, threads=1):
                 top_hits[(hit['qseqid'], hit['sseqid'])].append(hit)
 
         cache, unique = {}, 0
+        unique_host_links = set()
+
         with open(filtered_out, 'w', newline='') as f:
             writer = csv.DictWriter(f, fieldnames=["pair_num"] + list(hit.keys()) + ["novel host", "known host"])
             writer.writeheader()
             for k, v in top_hits.items():
-                v = sorted(v, key=lambda x: float(x['evalue']))[:2]
-                total = sum(int(h['length']) for h in v)
-                if total < thresholds['coverage']:
+                v = sorted(v, key=lambda x: float(x['evalue']))
+
+                if len(v) >= 2:
+                    top2 = v[:2]
+                    lengths = [int(h['length']) for h in top2]
+                    if (sum(lengths) < thresholds['coverage']) or any(l < thresholds['coverage'] / 2 for l in lengths):
+                        continue
+                    v = top2
+                elif len(v) == 1:
+                    if int(v[0]['length']) < thresholds['coverage']:
+                        continue
+                else:
                     continue
+
                 if float(v[0]['pident']) < thresholds['identity']:
                     continue
                 if float(v[0]['evalue']) > thresholds['evalue']:
                     continue
+
                 q, s = extract_accession(k[0]), extract_accession(k[1])
                 q_sp, s_sp = get_species(q, cache), get_species(s, cache)
                 unique += 1
+                unique_host_links.add((q_sp, s_sp))
+
                 for h in v:
                     h['pair_num'] = unique
                     h['novel host'] = q_sp
                     h['known host'] = s_sp
                     writer.writerow(h)
+
+        # Write host_link_summary_d{d}.csv
+        link_summary_file = os.path.join(output_dir, f"host_link_summary_d{d}.csv")
+        with open(link_summary_file, 'w', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=["novel host", "known host"])
+            writer.writeheader()
+            for nh, kh in sorted(unique_host_links):
+                writer.writerow({"novel host": nh, "known host": kh})
 
         summary.append({"d": d, "unique_query_subject_pairs": unique})
 
@@ -175,6 +204,7 @@ def link_and_filter(novel_fasta, d_values, thresholds, output_dir, threads=1):
         writer = csv.DictWriter(f, fieldnames=["d", "unique_query_subject_pairs"])
         writer.writeheader()
         writer.writerows(summary)
+
 
 def run_all(
     target, known, novel, email,

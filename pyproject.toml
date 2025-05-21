@@ -1,6 +1,6 @@
 [project]
 name = "gem"
-version = "1.1.0"
+version = "1.1.1"
 description = "GEM: Genetic Exchange Model"
 readme = "README.md"
 requires-python = ">=3.10"
