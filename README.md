@@ -75,9 +75,9 @@ gem run-all --help
 
 ### 🔧 Key Parameters
 
-* `--target`: FASTA file containing target gene sequences (**required**)
-* `--known`: FASTA file of known host sequences with the target gene (**required**)
-* `--novel`: FASTA file of potential novel host sequences (**required**)
+* `--target`: Reference sequence (FASTA file) of the target gene (**required**)
+* `--known`: FASTA file of known host sequences containing the target gene (**required**)
+* `--novel`: FASTA file of potential novel host sequences lacking the target gene (**required**)
 * `--email`: Your email address (required by NCBI Entrez)
 * `--threads`: Number of threads for BLAST (default: `1`)
 * `--min-len`: Minimum sequence length to retain (default: `5000`)
