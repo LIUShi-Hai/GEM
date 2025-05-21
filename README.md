@@ -117,12 +117,7 @@ tail -f gem.log
 ## 🧪 Test Example
 
 ```bash
-gem run-all \
-  --target test/target.fasta \
-  --known test/known.fasta \
-  --novel test/novel.fasta \
-  --email you@example.com \
-  --threads 2
+gem run-all --target test/target.fasta --known test/known.fasta --novel test/novel.fasta --email you@example.com --threads 2
 ```
 
 ### 🗂 Outputs
