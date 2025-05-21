@@ -122,8 +122,7 @@ gem run-all --target test/target.fasta --known test/known.fasta --novel test/nov
 
 ### 🗂 Outputs
 
-* `Species_link_Genetic_Exchange_Prediction_d{d}.csv`: Summary table for each expansion distance
-* `gem-output/`: Contains intermediate BLAST files, gene contexts, and processed sequences
+* `gem-output/`: Contains processed sequences, intermediate BLAST files, and summary tables (Species_link_Genetic_Exchange_Prediction_d{d}.csv) with predicted interspecies genetic exchange events, etc.
 
 ---
 
