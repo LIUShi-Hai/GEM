@@ -2,7 +2,7 @@
 
 **Version 1.1.0**
 
-**Genetic Exchange Model (GEM)** is a cross-platform bioinformatics pipeline for analyzing genetic exchange between known and potential microbial hosts using comparative genomics.
+**Genetic Exchange Model (GEM)** is a cross-platform bioinformatics pipeline for analyzing genetic exchange between known and potential microbial hosts using comparative genomics. Version 1.1.0 adds support for multi-threaded BLAST runs via the `--threads` parameter.
 
 ![Conda](https://img.shields.io/conda/vn/shihai_liu/gem?label=Install%20with%20conda)
 
