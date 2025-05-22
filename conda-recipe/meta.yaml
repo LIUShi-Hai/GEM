@@ -1,6 +1,6 @@
 package:
   name: gem
-  version: "1.1.1"
+  version: "1.1.2"
 
 source:
   path: ..
@@ -24,6 +24,7 @@ test:
   commands:
     - gem --help
     - gem run-all --help  # verify new threads option appears
+    - gem --version        # verify version flag works
 
 about:
   home: https://github.com/LIUShi-Hai/GEM
@@ -32,7 +33,10 @@ about:
   summary: "GEM: Genetic Exchange Model"
   description: |
     GEM (Genetic Exchange Model) is a bioinformatics pipeline for identifying horizontal gene transfer events between known and unknown hosts.
-    Version 1.1.0 adds support for multi-threaded BLAST runs via the `--threads` parameter.
+    Version 1.1.2 adds:
+    - Automatic generation of host_link_summary_d{d}.csv with link counts.
+    - Support for `--version` CLI flag.
+    - Bug fixes and improved WSL compatibility.
 
 extra:
   recipe-maintainers:

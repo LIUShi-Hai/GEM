@@ -1,13 +1,14 @@
 import argparse
-from gem.pipeline import run_all
+from gem.pipeline import run_all, __version__
 
 def main():
     parser = argparse.ArgumentParser(
         description="GEM: Genetic Exchange Model CLI"
     )
+    parser.add_argument('--version', action='version', version=f'GEM version {__version__}')
+
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    # Define `run-all` subcommand with default values shown in help
     run_parser = subparsers.add_parser(
         "run-all",
         help="Run the full GEM pipeline",
@@ -19,12 +20,13 @@ def main():
     run_parser.add_argument("--email", required=True, help="Email for NCBI Entrez queries")
     run_parser.add_argument("--min-len", type=int, default=5000, help="Minimum length to keep known sequences")
     run_parser.add_argument("--segment-size", type=int, default=5000, help="Up/downstream window size in bp")
-    run_parser.add_argument("--d-range", nargs=3, type=int, default=[0, 12000, 2000],
-                            help="Three space-separated integers: start, end, and step of expansion distances")
+    run_parser.add_argument("--d-range", nargs=3, type=int, default=[0, 12000, 2000], help="Three space-separated integers: start, end, and step of expansion distances")
     run_parser.add_argument("--coverage-threshold", type=int, default=4000, help="Minimum total BLAST alignment length")
     run_parser.add_argument("--identity-threshold", type=float, default=80.0, help="Minimum BLAST identity percentage")
     run_parser.add_argument("--evalue-threshold", type=float, default=1e-3, help="Maximum acceptable BLAST e-value")
     run_parser.add_argument("--threads", type=int, default=1, help="Number of threads for BLAST")
+    run_parser.add_argument("--output-dir", default="gem_output", help="Directory to store all output files")
+    run_parser.add_argument("--force", action="store_true", help="Force overwrite of output directory without confirmation")
 
     args = parser.parse_args()
 
@@ -40,6 +42,8 @@ def main():
             coverage_threshold=args.coverage_threshold,
             identity_threshold=args.identity_threshold,
             evalue_threshold=args.evalue_threshold,
+            output_dir=args.output_dir,
+            force_overwrite=args.force,
             threads=args.threads
         )
 

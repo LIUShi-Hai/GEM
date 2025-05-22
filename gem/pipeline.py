@@ -6,6 +6,8 @@ from collections import defaultdict
 from Bio import SeqIO, Entrez
 from Bio.SeqRecord import SeqRecord
 
+__version__ = "1.1.2"
+
 def filter_sequences(input_fasta, output_fasta, min_len):
     records = [rec for rec in SeqIO.parse(input_fasta, "fasta") if len(rec.seq) >= min_len]
     if not records:
@@ -113,6 +115,21 @@ def link_and_filter(novel_fasta, d_values, thresholds, output_dir, threads=1):
     import os
     from Bio import SeqIO, Entrez
 
+    def extract_accession(s):
+        return s.split(".")[0].split(":")[0]
+
+    def get_species(acc, cache):
+        if acc in cache:
+            return cache[acc]
+        try:
+            record = Entrez.read(Entrez.esummary(db="nuccore", id=acc))
+            title = record[0]['Title']
+            species = " ".join(title.split()[:2])
+        except:
+            species = "Unknown"
+        cache[acc] = species
+        return species
+
     summary = []
 
     for d in d_values:
@@ -151,10 +168,12 @@ def link_and_filter(novel_fasta, d_values, thresholds, output_dir, threads=1):
                 if len(row) != 9:
                     continue
                 hit = dict(zip(["qseqid", "qstart", "qend", "sseqid", "sstart", "send", "pident", "length", "evalue"], row))
-                top_hits[(hit['qseqid'], hit['sseqid'])].append(hit)
+                if int(hit["length"]) >= 2000:  # Apply min 2kb alignment length filter
+                    top_hits[(hit['qseqid'], hit['sseqid'])].append(hit)
 
         cache, unique = {}, 0
         unique_host_links = set()
+        host_pair_counts = defaultdict(int)
 
         with open(filtered_out, 'w', newline='') as f:
             writer = csv.DictWriter(f, fieldnames=["pair_num"] + list(hit.keys()) + ["novel host", "known host"])
@@ -183,6 +202,7 @@ def link_and_filter(novel_fasta, d_values, thresholds, output_dir, threads=1):
                 q_sp, s_sp = get_species(q, cache), get_species(s, cache)
                 unique += 1
                 unique_host_links.add((q_sp, s_sp))
+                host_pair_counts[(q_sp, s_sp)] += 1
 
                 for h in v:
                     h['pair_num'] = unique
@@ -190,13 +210,18 @@ def link_and_filter(novel_fasta, d_values, thresholds, output_dir, threads=1):
                     h['known host'] = s_sp
                     writer.writerow(h)
 
-        # Write host_link_summary_d{d}.csv
+        # Write host_link_summary_d{d}.csv with link_No and pair count
         link_summary_file = os.path.join(output_dir, f"host_link_summary_d{d}.csv")
         with open(link_summary_file, 'w', newline='') as f:
-            writer = csv.DictWriter(f, fieldnames=["novel host", "known host"])
+            writer = csv.DictWriter(f, fieldnames=["link_No", "known host", "novel host", "pair"])
             writer.writeheader()
-            for nh, kh in sorted(unique_host_links):
-                writer.writerow({"novel host": nh, "known host": kh})
+            for i, ((novel, known), count) in enumerate(sorted(host_pair_counts.items()), 1):
+                writer.writerow({
+                    "link_No": i,
+                    "known host": known,
+                    "novel host": novel,
+                    "pair": count
+                })
 
         summary.append({"d": d, "unique_query_subject_pairs": unique})
 
@@ -204,6 +229,7 @@ def link_and_filter(novel_fasta, d_values, thresholds, output_dir, threads=1):
         writer = csv.DictWriter(f, fieldnames=["d", "unique_query_subject_pairs"])
         writer.writeheader()
         writer.writerows(summary)
+
 
 
 def run_all(
@@ -256,6 +282,7 @@ def main():
         description="End-to-end pipeline for identifying target gene context and host linkage",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
+    parser.add_argument('--version', action='version', version=f"GEM version {__version__}")
     parser.add_argument("--target", required=True, help="FASTA file of target gene sequences")
     parser.add_argument("--known", required=True, help="FASTA file of known host sequences")
     parser.add_argument("--novel", required=True, help="FASTA file of novel host sequences to be linked")
