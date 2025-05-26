@@ -159,9 +159,18 @@ python annotate_aligned_cds.py --input-csv-dir ./gem_output --output-dir ./gem_o
 
 Each row includes:
 
-- `pair_num`, `qseqid`, `sseqid`, `qstart`, `qend`
-- Overlapping CDS info: `CDS_start`, `CDS_end`, `strand`, `gene`, `product`
-- Host species names
+| Field         | Description                        |
+|---------------|------------------------------------|
+| pair_num      | Pair number from GEM               |
+| qseqid        | Novel genome contig ID             |
+| sseqid        | Known genome contig ID             |
+| qstart/qend   | Aligned region on query            |
+| CDS_start/end | Coordinates of overlapping CDS     |
+| strand        | CDS strand (+ or -)                |
+| gene          | Gene name (if annotated)           |
+| product       | Functional description of CDS      |
+| novel host    | Species of the novel host          |
+| known host    | Species of the known host          |
 
 ### 📓 Logging
 
