@@ -135,11 +135,7 @@ conda install -c bioconda -c conda-forge bcbio-gff
 ### ▶️ Usage
 
 ```bash
-python annotate_aligned_cds.py \
-  --input-csv-dir ./gem_output \
-  --output-dir ./gem_output \
-  --novel-fasta ./test/novel.fasta \
-  --threads 4
+python annotate_aligned_cds.py --input-csv-dir ./gem_output --output-dir ./gem_output --novel-fasta ./test/novel.fasta --threads 4
 ```
 
 **Arguments**:
