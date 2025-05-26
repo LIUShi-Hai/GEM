@@ -150,23 +150,22 @@ python annotate_aligned_cds.py --input-csv-dir ./gem_output --output-dir ./gem_o
 - `prokka_cds/` directory inside `--output-dir`
 - Annotated `.gff` files in `prokka_cds/<qseqid>/`
 - CDS product tables like:
-  ```
+```
   prokka_cds/Aligned_CDS_products_d0.csv
-  prokka_cds/Aligned_CDS_products_d4000.csv
-  ```
+```
 
 Each row includes:
 
-* 'pair_num': Pair number from GEM
-* 'qseqid': Novel genome contig ID
-* 'sseqid': Known genome contig ID
-* 'qstart/qend': Aligned region on query
-* 'CDS_start/end': Coordinates of overlapping CDS
-* 'strand': CDS strand (+ or -)
-* 'gene': Gene name (if annotated)
-* 'product': Functional description of CDS
-* 'novel host': Species of the novel host
-* 'known host': Species of the known host
+* `pair_num`: Pair number from GEM
+* `qseqid`: Novel genome contig ID
+* `sseqid`: Known genome contig ID
+* `qstart/qend`: Aligned region on query
+* `CDS_start/end`: Coordinates of overlapping CDS
+* `strand`: CDS strand (+ or -)
+* `gene`: Gene name (if annotated)
+* `product`: Functional description of CDS
+* `novel host`: Species of the novel host
+* `known host`: Species of the known host
   
 ### 📓 Logging
 
