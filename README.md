@@ -130,7 +130,7 @@ gem run-all --target test/target.fasta --known test/known.fasta --novel test/nov
 
 ### 🗂 Output Files
 
-* `gem-output/`
+* `gem_output/`
   * `blast_query_subject_pair_counts.csv`: Number of valid query-subject pairs per `d`
   * `Species_link_Genetic_Exchange_Prediction_d{d}.csv`: Detailed alignments
   * `host_link_summary_d{d}.csv`: Summarized novel–known host linkages
