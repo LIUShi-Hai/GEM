@@ -24,8 +24,6 @@
 
 ### 🐧🍎 Option 1: Install with Conda (Recommended for Linux/macOS)
 
-Installs all dependencies, including Biopython and NCBI BLAST+:
-
 ```bash
 conda install -c shihai_liu -c conda-forge -c bioconda gem=1.1.2
 ```
@@ -34,87 +32,60 @@ conda install -c shihai_liu -c conda-forge -c bioconda gem=1.1.2
 
 #### ✅ (A) Use WSL (Windows Subsystem for Linux)
 
-1. Install WSL:
+```powershell
+wsl --install
+```
+Then install GEM:
 
-   ```powershell
-   wsl --install
-   ```
-2. Open Ubuntu (or another Linux distro) and install GEM:
-
-   ```bash
-   conda install -c shihai_liu -c conda-forge -c bioconda gem=1.1.2
-   ```
+```bash
+conda install -c shihai_liu -c conda-forge -c bioconda gem=1.1.2
+```
 
 #### ✅ (B) Native Windows (Advanced Users)
 
-1. Ensure system dependencies:
-
-   * Python ≥ 3.10
-   * Biopython
-   * NCBI BLAST+ (`makeblastdb`, `blastn`) in PATH
-
-2. Install from GitHub:
-
-   ```bash
-   pip install git+https://github.com/LIUShi-Hai/GEM.git@v1.1.2
-   ```
+```bash
+pip install git+https://github.com/LIUShi-Hai/GEM.git@v1.1.2
+```
 
 ---
 
 ## 🚀 Usage
 
-Run the full GEM pipeline:
-
 ```bash
 gem run-all --target target.fasta --known known.fasta --novel novel.fasta --email you@example.com --threads 4
 ```
-
-Check the installed version:
 
 ```bash
 gem --version
 ```
 
-View all available parameters:
-
 ```bash
 gem run-all --help
 ```
 
-### 🔧 Key Parameters
+---
 
-* `--target`: Reference sequence (FASTA file) of the target gene (**required**)
-* `--known`: FASTA file of known host sequences containing the target gene (**required**)
-* `--novel`: FASTA file of potential novel host sequences lacking the target gene (**required**)
-* `--email`: Your email address (required by NCBI Entrez)
-* `--threads`: Number of threads for BLAST (default: `1`)
-* `--min-len`: Minimum sequence length to retain (default: `5000`)
-* `--segment-size`: Up/downstream extraction length in bp (default: `5000`)
-* `--d-range`: Expansion distances: start end step (default: `0 12000 2000`)
-* `--coverage-threshold`: Minimum alignment length for a pair (default: `4000`)
-* `--identity-threshold`: Minimum % identity (default: `80.0`)
-* `--evalue-threshold`: BLAST e-value cutoff (default: `1e-3`)
+## 🔧 Key Parameters
+
+* `--target`: Reference sequence (FASTA) of target gene (**required**)
+* `--known`: FASTA file of known host sequences (**required**)
+* `--novel`: FASTA of potential novel host sequences (**required**)
+* `--email`: Your email (for NCBI Entrez)
+* `--threads`: Number of BLAST threads (default: `1`)
+* `--min-len`: Minimum sequence length (default: `5000`)
+* `--segment-size`: Up/downstream context in bp (default: `5000`)
+* `--d-range`: Expansion distances (default: `0 12000 2000`)
+* `--coverage-threshold`: Total alignment length (default: `4000`)
+* `--identity-threshold`: % identity threshold (default: `80.0`)
+* `--evalue-threshold`: Max e-value (default: `1e-3`)
 
 ---
 
 ## ⏱ Run in Background with `nohup`
 
-GEM may take time with large datasets. Run in background:
-
-#### Option 1: Automatically confirm overwrite
-
 ```bash
 nohup yes | gem run-all ... > gem.log 2>&1 &
 ```
-
-#### Option 2: Manually delete previous output
-
-```bash
-rm -rf gem-output
-nohup gem run-all ... > gem.log 2>&1 &
-```
-
-Monitor:
 
 ```bash
 tail -f gem.log
@@ -128,12 +99,56 @@ tail -f gem.log
 gem run-all --target test/target.fasta --known test/known.fasta --novel test/novel.fasta --email you@example.com --threads 2
 ```
 
-### 🗂 Output Files
+---
+
+## 🗂 Output Files
 
 * `gem_output/`
-  * `blast_query_subject_pair_counts.csv`: Number of valid query-subject pairs per `d`
-  * `Species_link_Genetic_Exchange_Prediction_d{d}.csv`: Detailed alignments
-  * `host_link_summary_d{d}.csv`: Summarized novel–known host linkages
+  * `blast_query_subject_pair_counts.csv`
+  * `Species_link_Genetic_Exchange_Prediction_d{d}.csv`
+  * `host_link_summary_d{d}.csv`
+
+---
+
+## 🧩 Optional: Annotate Aligned CDS with Prokka
+
+After running `gem run-all`, you can optionally annotate novel host genomes using [Prokka](https://github.com/tseemann/prokka) and extract coding sequences (CDS) overlapping the aligned regions.
+
+### 📦 Installation
+
+```bash
+conda create -n gem_cds_env python=3.10 prokka biopython -c bioconda -c conda-forge
+conda activate gem_cds_env
+conda install -c bioconda -c conda-forge bcbio-gff
+```
+
+### ▶️ Run the annotation script
+
+```bash
+python scripts/annotate_aligned_cds.py   --input-csv-dir ./gem_output   --output-dir ./gem_output   --novel-fasta ./test/novel.fasta   --threads 4
+```
+
+### 📂 Output
+
+- Annotated `.gff` files: `gem_output/prokka_cds/<qseqid>/*.gff`
+- CDS product tables: `prokka_cds/Aligned_CDS_products_d{d}.csv`
+
+Each row includes:
+
+| Field         | Description                        |
+|---------------|------------------------------------|
+| pair_num      | Pair number from GEM               |
+| qseqid        | Novel genome contig ID             |
+| sseqid        | Known genome contig ID             |
+| qstart/qend   | Aligned region on query            |
+| CDS_start/end | Coordinates of overlapping CDS     |
+| strand        | CDS strand (+ or -)                |
+| gene          | Gene name (if annotated)           |
+| product       | Functional description of CDS      |
+| novel host    | Species of the novel host          |
+| known host    | Species of the known host          |
+
+Logs: `annotate_aligned_cds.log`
 
 ---
 
