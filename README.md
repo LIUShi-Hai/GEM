@@ -140,12 +140,10 @@ python annotate_aligned_cds.py --input-csv-dir ./gem_output --output-dir ./gem_o
 
 **Arguments**:
 
-| Argument          | Description                                                       |
-|-------------------|-------------------------------------------------------------------|
-| `--input-csv-dir` | Directory with `Species_link_Genetic_Exchange_Prediction_d*.csv` |
-| `--output-dir`    | Where results and annotations will be written                    |
-| `--novel-fasta`   | FASTA file containing novel host genomes used in GEM             |
-| `--threads`       | Number of threads for Prokka                                     |
+* `--input-csv-dir`: Directory with `Species_link_Genetic_Exchange_Prediction_d*.csv` 
+* `--output-dir`: Where results and annotations will be written
+* `--novel-fasta`: FASTA file containing novel host genomes used in GEM
+* `--threads`: Number of threads for Prokka
 
 ### 📂 Output
 
@@ -159,19 +157,17 @@ python annotate_aligned_cds.py --input-csv-dir ./gem_output --output-dir ./gem_o
 
 Each row includes:
 
-| Field         | Description                        |
-|---------------|------------------------------------|
-| pair_num      | Pair number from GEM               |
-| qseqid        | Novel genome contig ID             |
-| sseqid        | Known genome contig ID             |
-| qstart/qend   | Aligned region on query            |
-| CDS_start/end | Coordinates of overlapping CDS     |
-| strand        | CDS strand (+ or -)                |
-| gene          | Gene name (if annotated)           |
-| product       | Functional description of CDS      |
-| novel host    | Species of the novel host          |
-| known host    | Species of the known host          |
-
+* 'pair_num': Pair number from GEM
+* 'qseqid': Novel genome contig ID
+* 'sseqid': Known genome contig ID
+* 'qstart/qend': Aligned region on query
+* 'CDS_start/end': Coordinates of overlapping CDS
+* 'strand': CDS strand (+ or -)
+* 'gene': Gene name (if annotated)
+* 'product': Functional description of CDS
+* 'novel host': Species of the novel host
+* 'known host': Species of the known host
+  
 ### 📓 Logging
 
 All runtime output is also saved to:
