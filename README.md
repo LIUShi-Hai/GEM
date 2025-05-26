@@ -114,7 +114,17 @@ gem run-all --target test/target.fasta --known test/known.fasta --novel test/nov
 
 After running `gem run-all`, you can optionally annotate novel host genomes using [Prokka](https://github.com/tseemann/prokka) and extract coding sequences (CDS) overlapping the aligned regions.
 
-### 📦 Installation
+### 📌 Purpose
+
+After running `gem run-all`, use this tool to:
+
+- Annotate novel genomes with [Prokka](https://github.com/tseemann/prokka)
+- Identify overlapping CDS regions for gene context analysis
+- Generate `Aligned_CDS_products_d{d}.csv` files for each expansion distance
+
+### 🛠️ Requirements
+
+Install dependencies in a new environment:
 
 ```bash
 conda create -n gem_cds_env python=3.10 prokka biopython -c bioconda -c conda-forge
@@ -122,33 +132,53 @@ conda activate gem_cds_env
 conda install -c bioconda -c conda-forge bcbio-gff
 ```
 
-### ▶️ Run the annotation script
+### ▶️ Usage
 
 ```bash
-python scripts/annotate_aligned_cds.py   --input-csv-dir ./gem_output   --output-dir ./gem_output   --novel-fasta ./test/novel.fasta   --threads 4
+python annotate_aligned_cds.py \
+  --input-csv-dir ./gem_output \
+  --output-dir ./gem_output \
+  --novel-fasta ./test/novel.fasta \
+  --threads 4
 ```
+
+**Arguments**:
+
+| Argument          | Description                                                       |
+|-------------------|-------------------------------------------------------------------|
+| `--input-csv-dir` | Directory with `Species_link_Genetic_Exchange_Prediction_d*.csv` |
+| `--output-dir`    | Where results and annotations will be written                    |
+| `--novel-fasta`   | FASTA file containing novel host genomes used in GEM             |
+| `--threads`       | Number of threads for Prokka                                     |
 
 ### 📂 Output
 
-- Annotated `.gff` files: `gem_output/prokka_cds/<qseqid>/*.gff`
-- CDS product tables: `prokka_cds/Aligned_CDS_products_d{d}.csv`
+- `prokka_cds/` directory inside `--output-dir`
+- Annotated `.gff` files in `prokka_cds/<qseqid>/`
+- CDS product tables like:
+  ```
+  prokka_cds/Aligned_CDS_products_d0.csv
+  prokka_cds/Aligned_CDS_products_d4000.csv
+  ```
 
 Each row includes:
 
-| Field         | Description                        |
-|---------------|------------------------------------|
-| pair_num      | Pair number from GEM               |
-| qseqid        | Novel genome contig ID             |
-| sseqid        | Known genome contig ID             |
-| qstart/qend   | Aligned region on query            |
-| CDS_start/end | Coordinates of overlapping CDS     |
-| strand        | CDS strand (+ or -)                |
-| gene          | Gene name (if annotated)           |
-| product       | Functional description of CDS      |
-| novel host    | Species of the novel host          |
-| known host    | Species of the known host          |
+- `pair_num`, `qseqid`, `sseqid`, `qstart`, `qend`
+- Overlapping CDS info: `CDS_start`, `CDS_end`, `strand`, `gene`, `product`
+- Host species names
 
-Logs: `annotate_aligned_cds.log`
+### 📓 Logging
+
+All runtime output is also saved to:
+```bash
+annotate_aligned_cds.log
+```
+
+### 💡 Notes
+
+- This script is **optional** and intended for post-GEM analysis.
+- It is safe to run using `nohup` for long jobs.
+- It will automatically avoid re-annotating genomes that have already been processed.
 
 ---
 
