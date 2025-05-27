@@ -13,7 +13,7 @@
 * Filters input sequences by user-defined length
 * Performs multi-threaded BLAST comparisons to detect homologous gene contexts
 * Expands genetic regions upstream and downstream of target genes
-* Infers genetic exchange by linking novel and known host sequences
+* Infers genetic exchange by linking novel/potential and known host sequences
 * Automatically generates summary tables with predicted exchange events
 * Tracks and summarizes host-host linkage pairs across multiple alignments
 * Reports GEM version using `--version`
@@ -69,7 +69,7 @@ gem run-all --help
 
 * `--target`: Reference sequence (FASTA) of target gene (**required**)
 * `--known`: FASTA file of known host sequences (**required**)
-* `--novel`: FASTA of potential novel host sequences (**required**)
+* `--novel`: FASTA of potential novel/potential host sequences (**required**)
 * `--email`: Your email (for NCBI Entrez)
 * `--threads`: Number of BLAST threads (default: `1`)
 * `--min-len`: Minimum sequence length (default: `5000`)
@@ -112,13 +112,13 @@ gem run-all --target test/target.fasta --known test/known.fasta --novel test/nov
 
 ## 🧩 Optional: Annotate Aligned CDS with Prokka
 
-After running `gem run-all`, you can optionally annotate novel host genomes using [Prokka](https://github.com/tseemann/prokka) and extract coding sequences (CDS) overlapping the aligned regions.
+After running `gem run-all`, you can optionally annotate novel/potential host genomes using [Prokka](https://github.com/tseemann/prokka) and extract coding sequences (CDS) overlapping the aligned regions.
 
 ### 📌 Purpose
 
 After running `gem run-all`, use this tool to:
 
-- Annotate novel genomes with [Prokka](https://github.com/tseemann/prokka)
+- Annotate novel/potential genomes with [Prokka](https://github.com/tseemann/prokka)
 - Identify overlapping CDS regions for gene context analysis
 - Generate `Aligned_CDS_products_d{d}.csv` files for each expansion distance
 
@@ -148,7 +148,7 @@ python annotate_aligned_cds.py --input-csv-dir ./gem_output --output-dir ./gem_o
 
 * `--input-csv-dir`: Directory with `Species_link_Genetic_Exchange_Prediction_d*.csv` 
 * `--output-dir`: Where results and annotations will be written
-* `--novel-fasta`: FASTA file containing novel host genomes used in GEM
+* `--novel-fasta`: FASTA file containing novel/potential host genomes used in GEM
 * `--threads`: Number of threads for Prokka
 
 ### 📂 Output
@@ -160,14 +160,14 @@ python annotate_aligned_cds.py --input-csv-dir ./gem_output --output-dir ./gem_o
 In `prokka_cds/Aligned_CDS_products_d*.csv`, each row includes:
 
 * `pair_num`: Pair number from GEM
-* `qseqid`: Novel genome contig ID
+* `qseqid`: Novel/Potential genome contig ID
 * `sseqid`: Known genome contig ID
 * `qstart/qend`: Aligned region on query
 * `CDS_start/end`: Coordinates of overlapping CDS
 * `strand`: CDS strand (+ or -)
 * `gene`: Gene name (if annotated)
 * `product`: Functional description of CDS
-* `novel host`: Species of the novel host
+* `novel host`: Species of the novel/potential host
 * `known host`: Species of the known host
   
 ### 📓 Logging
