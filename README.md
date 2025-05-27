@@ -152,7 +152,7 @@ After running `gem run-all`, you can optionally annotate novel/potential host ge
 
 ### 📌 Purpose
 
-  After running `gem run-all`, use this tool to:
+  After running `gem run-all`, use `annotate_aligned_cds.py` to:
 
 - Annotate novel/potential genomes with [Prokka](https://github.com/tseemann/prokka)
 - Identify overlapping CDS regions for gene context analysis
