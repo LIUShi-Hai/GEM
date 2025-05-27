@@ -103,14 +103,14 @@ gem run-all --target test/target.fasta --known test/known.fasta --novel test/nov
 
 ## 🗂 Output Files
 
-Three core outputs in:`gem_output/`
+  Three core outputs in:`gem_output/`
   * `blast_query_subject_pair_counts.csv`
   * `Species_link_Genetic_Exchange_Prediction_d{d}.csv`
   * `host_link_summary_d{d}.csv`
 
-### (1) `Species_link_Genetic_Exchange_Prediction_d{d}.csv`
+### 📃`Species_link_Genetic_Exchange_Prediction_d{d}.csv`
 
-This file provides detailed alignment information for novel/potential–known host sequence pairs that passed all filtering criteria (e.g., alignment length, identity, and e-value) at each d value (i.e., upstream/downstream expansion distance).
+ This file provides detailed alignment information for novel/potential–known host sequence pairs that passed  all filtering criteria (alignment length, identity, and e-value) at each expansion distance `d`.
 
  * `pair_num`: Unique ID for each novel/potential–known query-subject pair that passed filtering
  * `qseqid`: ID of the **novel/potential** host genome sequence (query)
@@ -125,16 +125,16 @@ This file provides detailed alignment information for novel/potential–known ho
  * `novel host`: Species name inferred for the query (novel/potential) genome
  * `known host`: Species name inferred for the subject (known) genome
 
-### (2) `blast_query_subject_pair_counts.csv`
+### 📃`blast_query_subject_pair_counts.csv`
 
-This file reports the number of unique query-subject pairs that met all filtering criteria (alignment length, identity, and e-value) at each expansion distance `d`.
+ This file reports the number of unique query-subject pairs that met all filtering criteria (alignment length, identity, and e-value) at each expansion distance `d`.
 
  * `d`: Expansion distance (in base pairs) for genetic context extension
  * `unique_query_subject_pairs`: Number of novel/potential–known host genome pairs that passed all BLAST filtering criteria
 
-### (3) `host_link_summary_d{d}.csv`
+### 📃`host_link_summary_d{d}.csv`
 
-This file summarizes the number of novel/potential–known host linkages inferred at each expansion distance (`d`), based on filtered BLAST alignments.
+ This file summarizes the number of novel/potential–known host linkages inferred at each expansion distance (`d`), based on filtered BLAST alignments.
 
  * `link_No`: Unique ID for each novel/potential–known host species link
  * `known host`: Species name of the known (subject) genome
