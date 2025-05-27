@@ -103,10 +103,43 @@ gem run-all --target test/target.fasta --known test/known.fasta --novel test/nov
 
 ## 🗂 Output Files
 
-* `gem_output/`
+Three core outputs in:`gem_output/`
   * `blast_query_subject_pair_counts.csv`
   * `Species_link_Genetic_Exchange_Prediction_d{d}.csv`
   * `host_link_summary_d{d}.csv`
+
+### (1) `Species_link_Genetic_Exchange_Prediction_d{d}.csv`
+
+This file provides detailed alignment information for novel/potential–known host sequence pairs that passed all filtering criteria (e.g., alignment length, identity, and e-value) at each d value (i.e., upstream/downstream expansion distance).
+
+ * `pair_num`: Unique ID for each novel/potential–known query-subject pair that passed filtering
+ * `qseqid`: ID of the **novel/potential** host genome sequence (query)
+ * `qstart`: Start position of the aligned region on the novel/potential host genome
+ * `qend`: End position of the aligned region on the novel/potential host genome
+ * `sseqid`: ID of the **known** genome context sequence (subject), including `d`-value
+ * `sstart`: Start position of the alignment on the known genome
+ * `send`: End position of the alignment on the known genome
+ * `pident`: Percent identity of the BLAST alignment
+ * `length`: Length of the BLAST alignment (in bp)
+ * `evalue`: BLAST expectation value (lower = more significant match)
+ * `novel host`: Species name inferred for the query (novel/potential) genome
+ * `known host`: Species name inferred for the subject (known) genome
+
+### (2) `blast_query_subject_pair_counts.csv`
+
+This file reports the number of unique query-subject pairs that met all filtering criteria (alignment length, identity, and e-value) at each expansion distance `d`.
+
+ * `d`: Expansion distance (in base pairs) for genetic context extension
+ * `unique_query_subject_pairs`: Number of novel/potential–known host genome pairs that passed all BLAST filtering criteria
+
+### (3) `host_link_summary_d{d}.csv`
+
+This file summarizes the number of novel/potential–known host linkages inferred at each expansion distance (`d`), based on filtered BLAST alignments.
+
+ * `link_No`: Unique ID for each novel/potential–known host species link
+ * `known host`: Species name of the known (subject) genome
+ * `novel host`: Species name of the novel/potential (query) genome
+ * `pair`: Number of unique query-subject pairs supporting this host-host linkage
 
 ---
 
@@ -155,20 +188,20 @@ python annotate_aligned_cds.py --input-csv-dir ./gem_output --output-dir ./gem_o
 
 - `prokka_cds/` directory inside `--output-dir`
 - Annotated `.gff` files in `prokka_cds/<qseqid>/`
-- CDS product tables like:`prokka_cds/Aligned_CDS_products_d*.csv`
+- CDS product tables like:`prokka_cds/Aligned_CDS_products_d{d}.csv`
 
-In `prokka_cds/Aligned_CDS_products_d*.csv`, each row includes:
+In `prokka_cds/Aligned_CDS_products_d{d}.csv`, each row includes:
 
-* `pair_num`: Pair number from GEM
-* `qseqid`: Novel/Potential genome contig ID
-* `sseqid`: Known genome contig ID
-* `qstart/qend`: Aligned region on query
-* `CDS_start/end`: Coordinates of overlapping CDS
-* `strand`: CDS strand (+ or -)
-* `gene`: Gene name (if annotated)
-* `product`: Functional description of CDS
-* `novel host`: Species of the novel/potential host
-* `known host`: Species of the known host
+  `pair_num`: Pair number from GEM
+  `qseqid`: Novel/Potential genome contig ID
+  `sseqid`: Known genome contig ID
+  `qstart/qend`: Aligned region on query
+  `CDS_start/end`: Coordinates of overlapping CDS
+  `strand`: CDS strand (+ or -)
+  `gene`: Gene name (if annotated)
+  `product`: Functional description of CDS
+  `novel host`: Species of the novel/potential host
+  `known host`: Species of the known host
   
 ### 📓 Logging
 
