@@ -128,14 +128,20 @@ Install dependencies in a new environment:
 
 ```bash
 conda create -n gem_cds_env python=3.10 prokka biopython -c bioconda -c conda-forge
+```
+
+```bash
 conda activate gem_cds_env
+```
+
+```bash
 conda install -c bioconda -c conda-forge bcbio-gff
 ```
 
 ### ▶️ Usage
 
 ```bash
-python annotate_aligned_cds.py --input-csv-dir ./gem_output --output-dir ./gem_output --novel-fasta ./test/novel.fasta --threads 4
+python annotate_aligned_cds.py --input-csv-dir ./gem_output --output-dir ./gem_output --novel-fasta novel.fasta --threads 4
 ```
 
 **Arguments**:
