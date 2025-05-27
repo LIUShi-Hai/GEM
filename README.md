@@ -155,9 +155,9 @@ python annotate_aligned_cds.py --input-csv-dir ./gem_output --output-dir ./gem_o
 
 - `prokka_cds/` directory inside `--output-dir`
 - Annotated `.gff` files in `prokka_cds/<qseqid>/`
-- CDS product tables like:`prokka_cds/Aligned_CDS_products_d0.csv`
+- CDS product tables like:`prokka_cds/Aligned_CDS_products_d*.csv`
 
-Each row includes:
+In `prokka_cds/Aligned_CDS_products_d*.csv`, each row includes:
 
 * `pair_num`: Pair number from GEM
 * `qseqid`: Novel genome contig ID
