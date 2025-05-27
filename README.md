@@ -155,10 +155,7 @@ python annotate_aligned_cds.py --input-csv-dir ./gem_output --output-dir ./gem_o
 
 - `prokka_cds/` directory inside `--output-dir`
 - Annotated `.gff` files in `prokka_cds/<qseqid>/`
-- CDS product tables like:
-```
-  prokka_cds/Aligned_CDS_products_d0.csv
-```
+- CDS product tables like:`prokka_cds/Aligned_CDS_products_d0.csv`
 
 Each row includes:
 
@@ -175,10 +172,7 @@ Each row includes:
   
 ### 📓 Logging
 
-All runtime output is also saved to:
-```bash
-annotate_aligned_cds.log
-```
+All runtime output is also saved to:`annotate_aligned_cds.log`
 
 ### 💡 Notes
 
