@@ -70,7 +70,7 @@ gem run-all --help
 * `--target`: Reference sequence (FASTA) of target gene (**required**)
 * `--known`: FASTA file of known host sequences (**required**)
 * `--novel`: FASTA of potential novel/potential host sequences (**required**)
-* `--email`: Your email (for NCBI Entrez)
+* `--email`: Your email (for NCBI Entrez) (**required**)
 * `--threads`: Number of BLAST threads (default: `1`)
 * `--min-len`: Minimum sequence length (default: `5000`)
 * `--segment-size`: Up/downstream context in bp (default: `5000`)
