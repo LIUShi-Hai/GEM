@@ -99,6 +99,11 @@ tail -f gem.log
 
 ## 🧪 Test Example
 
+To verify your GEM installation, follow these steps:
+​* Download the test dataset​ (target.fasta, known.fasta, and novel.fasta) from:🔗 https://doi.org/10.6084/m9.figshare.29399741.v1
+* ​Save the files​ in your preferred directory (e.g., test/).
+* Run GEM​ with the following command:
+
 ```bash
 gem run-all --target test/target.fasta --known test/known.fasta --novel test/novel.fasta --email you@example.com --threads 2
 ```
