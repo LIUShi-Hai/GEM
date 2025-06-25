@@ -175,7 +175,7 @@ After running `gem run-all`, you can optionally annotate novel/potential host ge
   Install dependencies in a new environment:
 
 ```bash
-conda create -n gem_cds_env python=3.10 prokka biopython -c bioconda -c conda-forge
+conda create -n gem_cds_env python=3.10 prokka=1.14.6 biopython -c bioconda -c conda-forge
 ```
 
 ```bash
@@ -187,6 +187,8 @@ conda install -c bioconda -c conda-forge bcbio-gff
 ```
 
 ### ▶️ Usage
+
+Download `annoate_aligned_cds.py` from https://doi.org/10.6084/m9.figshare.29399741.v1, save the script in the same parent directory as `gem_output/` (i.e., place them side by side in one folder), and run the following command: 
 
 ```bash
 python annotate_aligned_cds.py --input-csv-dir ./gem_output --output-dir ./gem_output --novel-fasta novel.fasta --threads 4
@@ -222,11 +224,10 @@ python annotate_aligned_cds.py --input-csv-dir ./gem_output --output-dir ./gem_o
 
   All runtime output is also saved to:`annotate_aligned_cds.log`
 
-### 💡 Notes
+## 💡 Notes
 
-- This script is **optional** and intended for post-GEM analysis.
-- It is safe to run using `nohup` for long jobs.
-- It will automatically avoid re-annotating genomes that have already been processed.
+- For faster dependency resolution, you may use ​`mamba​` instead of `conda`. However, `​conda`​ remains the recommended choice in most scenarios. 
+- For long-running jobs, you can safely execute the process in the background using ​`nohup`.
 
 ---
 
