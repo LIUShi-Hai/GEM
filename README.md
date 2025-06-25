@@ -167,20 +167,16 @@ After running `gem run-all`, you can optionally annotate novel/potential host ge
   Install dependencies in a new environment:
 
 ```bash
-conda create -n gem_cds_env python=3.10 prokka=1.14.6 biopython -c bioconda -c conda-forge
-```
-
-```bash
-conda activate gem_cds_env
-```
-
-```bash
-conda install -c bioconda -c conda-forge bcbio-gff
+conda create -n gem_cds_env python=3.10 prokka=1.14.6 biopython bcbio-gff -c bioconda -c conda-forge
 ```
 
 ### ▶️ Usage
 
-Download `annoate_aligned_cds.py` from https://doi.org/10.6084/m9.figshare.29399741.v2, save the script in the same parent directory as `gem_output/` (i.e., place them side by side in one folder), and run the following command: 
+Download `annoate_aligned_cds.py` from https://doi.org/10.6084/m9.figshare.29399741.v2, save the script in the same parent directory as `gem_output/` (i.e., place them side by side in one folder), and run the following commands: 
+
+```bash
+conda activate gem_cds_env
+```
 
 ```bash
 python annotate_aligned_cds.py --input-csv-dir ./gem_output --output-dir ./gem_output --novel-fasta novel.fasta --threads 4
