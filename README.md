@@ -25,7 +25,7 @@
 ### 🐧🍎 Option 1: Install with Conda (Recommended for Linux/macOS)
 
 ```bash
-conda install -c shihai_liu -c conda-forge -c bioconda gem=1.1.2
+conda create -n gem_env -c shihai_liu -c conda-forge -c bioconda gem=1.1.2
 ```
 
 ### 🪟 Option 2: Windows Users
