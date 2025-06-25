@@ -38,7 +38,7 @@ wsl --install
 Then install GEM:
 
 ```bash
-conda install -c shihai_liu -c conda-forge -c bioconda gem=1.1.2
+conda create -n gem_env -c shihai_liu -c conda-forge -c bioconda gem=1.1.2
 ```
 
 #### ✅ (B) Native Windows (Advanced Users)
@@ -50,6 +50,10 @@ pip install git+https://github.com/LIUShi-Hai/GEM.git@v1.1.2
 ---
 
 ## 🚀 Usage
+
+```bash
+conda activate gem_env
+```
 
 ```bash
 gem run-all --target target.fasta --known known.fasta --novel novel.fasta --email you@example.com --threads 4
