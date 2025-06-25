@@ -101,7 +101,7 @@ tail -f gem.log
 
 To verify your GEM installation, follow these steps:
 
-* Download the test dataset​ (target.fasta, known.fasta, and novel.fasta) from: https://doi.org/10.6084/m9.figshare.29399741.v1
+* Download the test dataset​ (target.fasta, known.fasta, and novel.fasta) from: https://doi.org/10.6084/m9.figshare.29399741.v2
 * ​Save the files​ in your preferred directory (e.g., test/).
 * Run GEM​ with the following command:
 
@@ -180,7 +180,7 @@ conda install -c bioconda -c conda-forge bcbio-gff
 
 ### ▶️ Usage
 
-Download `annoate_aligned_cds.py` from https://doi.org/10.6084/m9.figshare.29399741.v1, save the script in the same parent directory as `gem_output/` (i.e., place them side by side in one folder), and run the following command: 
+Download `annoate_aligned_cds.py` from https://doi.org/10.6084/m9.figshare.29399741.v2, save the script in the same parent directory as `gem_output/` (i.e., place them side by side in one folder), and run the following command: 
 
 ```bash
 python annotate_aligned_cds.py --input-csv-dir ./gem_output --output-dir ./gem_output --novel-fasta novel.fasta --threads 4
