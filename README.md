@@ -162,14 +162,6 @@ A successful installation will generate the expected outputs as specified below.
 
 After running `gem run-all`, you can optionally annotate novel/potential host genomes using [Prokka](https://github.com/tseemann/prokka) and extract coding sequences (CDS) overlapping the aligned regions.
 
-### 📌 Purpose
-
-  After running `gem run-all`, use the python script `annotate_aligned_cds.py` located in `./scripts` to:
-
-- Annotate novel/potential genomes with [Prokka](https://github.com/tseemann/prokka)
-- Identify overlapping CDS regions for gene context analysis
-- Generate `Aligned_CDS_products_d{d}.csv` files for each expansion distance
-
 ### 🛠️ Requirements
 
   Install dependencies in a new environment:
